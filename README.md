@@ -16,6 +16,10 @@ NetworkQuests is a modern, educational C++20 library implementing comprehensive 
 git clone https://github.com/your-username/NetworkQuests.git
 cd NetworkQuests
 
+# Clean up any old modules (first time setup)
+chmod +x scripts/cleanup.sh
+./scripts/cleanup.sh
+
 # Install with one command
 chmod +x scripts/install.sh
 ./scripts/install.sh
@@ -62,51 +66,21 @@ cd build/examples
 
 ## 🏗️ Project Structure
 
+NetworkQuests follows a clean, modular architecture designed for both education and production use:
+
 ```
 NetworkQuests/
 ├── 📁 include/networkquests/    # Public API headers
-│   ├── 🔧 common.hpp            # Core utilities (Result<T>, SocketAddress)
-│   ├── 📊 logger.hpp            # Thread-safe logging system
-│   ├── 🌐 tcp.hpp               # TCP client/server
-│   ├── 📡 udp.hpp               # UDP client/server
-│   ├── 🌍 http.hpp              # HTTP client/server with routing
-│   ├── 🔍 dns.hpp               # DNS resolver/server
-│   ├── 📁 ftp.hpp               # FTP client/server
-│   ├── 💬 websocket.hpp         # WebSocket client/server
-│   ├── 📧 smtp.hpp              # SMTP client/server
-│   └── 📈 snmp.hpp              # SNMP manager/agent
-├── 📁 src/                      # Implementation files
-│   ├── 📁 utils/                # Core utilities implementation
-│   ├── 📁 tcp/                  # TCP implementation
-│   ├── 📁 udp/                  # UDP implementation
-│   ├── 📁 http/                 # HTTP implementation
-│   ├── 📁 dns/                  # DNS implementation
-│   ├── 📁 ftp/                  # FTP implementation
-│   ├── 📁 websocket/            # WebSocket implementation
-│   ├── 📁 smtp/                 # SMTP implementation
-│   └── 📁 snmp/                 # SNMP implementation
+├── 📁 src/                      # Implementation files  
 ├── 📁 examples/                 # Example applications
-│   ├── 📁 legacy/               # Original FlatBuffers project
-│   ├── 🔧 tcp_echo_server.cpp   # Simple TCP echo server
-│   ├── 🌍 http_web_server.cpp   # Full-featured HTTP server
-│   ├── 📧 smtp_mail_client.cpp  # Email sending client
-│   └── 📈 snmp_monitor.cpp      # Network monitoring tool
+│   └── 📁 legacy/               # Original FlatBuffers project
 ├── 📁 docs/                     # Comprehensive documentation
-│   ├── 📖 GETTING_STARTED.md    # Quick start guide
-│   ├── 🏗️ ARCHITECTURE.md       # System architecture
-│   ├── 🌐 tcp.md                # TCP protocol guide
-│   ├── 📡 udp.md                # UDP protocol guide
-│   ├── 🌍 http.md               # HTTP protocol guide
-│   ├── 🔍 dns.md                # DNS protocol guide
-│   ├── 📁 ftp.md                # FTP protocol guide
-│   ├── 💬 websocket.md          # WebSocket protocol guide
-│   ├── 📧 smtp.md               # SMTP protocol guide
-│   └── 📈 snmp.md               # SNMP protocol guide
-├── 📁 tests/                    # Test suites
+├──  tests/                    # Test suites
 ├── 📁 cmake/                    # CMake configuration
-├── 📁 scripts/                  # Build and utility scripts
-└── 🔧 CMakeLists.txt            # Main build configuration
+└── 📁 scripts/                  # Build and utility scripts
 ```
+
+For detailed information about the project organization, see [📄 Project Structure Guide](docs/PROJECT_STRUCTURE.md).
 
 ## 📚 Quick Examples
 
@@ -218,6 +192,10 @@ int main() {
 git clone https://github.com/your-username/NetworkQuests.git
 cd NetworkQuests
 
+# Clean up old modules (first time)
+chmod +x scripts/cleanup.sh
+./scripts/cleanup.sh
+
 # Run installation script
 chmod +x scripts/install.sh
 ./scripts/install.sh
@@ -263,6 +241,7 @@ target_link_libraries(my_app PRIVATE networkquests)
 ### Getting Started
 - [📖 Getting Started Guide](docs/GETTING_STARTED.md) - Complete setup and first steps
 - [🏗️ Architecture Overview](docs/ARCHITECTURE.md) - System design and implementation details
+- [📁 Project Structure](docs/PROJECT_STRUCTURE.md) - Detailed project organization
 
 ### Protocol Documentation
 - [🌐 TCP Protocol Guide](docs/tcp.md) - Reliable transport layer
@@ -396,6 +375,24 @@ mkdir build && cd build
 cmake ..
 make
 ```
+
+## 🧹 Project Maintenance
+
+### Cleanup Old Modules
+
+If you're upgrading from a previous version or want to clean build artifacts:
+
+```bash
+# Run cleanup script to remove old modules and build artifacts
+chmod +x scripts/cleanup.sh
+./scripts/cleanup.sh
+```
+
+This will remove:
+- Old legacy directories from root (`flatbuffers/`, `tcp/`, `udp/`)
+- Build artifacts and generated files
+- IDE configuration files
+- Temporary and cache files
 
 ## 🤝 Contributing
 

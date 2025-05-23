@@ -71,3 +71,154 @@ bin
 
 # Python
 qml_*
+
+# Build directories
+build/
+Build/
+BUILD/
+builds/
+cmake-build-*/
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+.cmake/
+
+# Generated package config files
+*Config.cmake
+*ConfigVersion.cmake
+*Targets.cmake
+
+# IDE files
+.vscode/
+.vs/
+*.vcxproj*
+*.sln
+*.suo
+*.user
+*.ncb
+*.aps
+*.pdb
+*.ilk
+*.meta
+*.obj
+*.pch
+*.tlog
+*.log
+*.idb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# JetBrains IDEs
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+
+# Conan
+conanfile.txt
+conandata.yml
+conan.lock
+conanbuildinfo.*
+
+# vcpkg
+vcpkg_installed/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Log files
+*.log
+logs/
+
+# Binary files
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Python cache (for scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Documentation build
+docs/_build/
+docs/build/
+
+# Test results
+test_results/
+test_reports/
+
+# Coverage files
+*.gcno
+*.gcda
+*.gcov
+coverage/
+
+# Clang format
+.clang-format
+
+# Local configuration
+.env
+.env.local
+config.local.*
+
+# Package managers
+node_modules/
+.npm
+.yarn/
+
+# Archives
+*.zip
+*.tar.gz
+*.tar.bz2
+*.rar
+
+# Backup files
+*.bak
+*.backup
+
+# FlatBuffers generated files (for legacy examples)
+examples/legacy/flatbuffers/build/
+*_generated.h
