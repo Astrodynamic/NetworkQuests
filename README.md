@@ -30,7 +30,7 @@ NetworkQuests is designed to be an educational and research-oriented project tha
 
 ## Features
 
-- 🌐 **Multi-Protocol Support**: TCP, UDP, HTTP, DNS, FTP, WebSocket with complete client/server implementations
+- 🌐 **Multi-Protocol Support**: TCP, UDP, HTTP, DNS, FTP, WebSocket, SMTP with complete client/server implementations
 - 🔧 **Modern C++20**: Leveraging concepts, ranges, coroutines, and other modern features
 - 📚 **Educational Focus**: Detailed documentation and guides for each protocol
 - 🧪 **Comprehensive Testing**: Unit and integration tests for all components
@@ -39,7 +39,8 @@ NetworkQuests is designed to be an educational and research-oriented project tha
 - 🔍 **DNS Resolution**: Complete RFC 1035 implementation with caching and zone management
 - 📁 **FTP File Transfer**: RFC 959 compliant FTP with active/passive modes and user management
 - 🔄 **WebSocket Protocol**: RFC 6455 real-time bidirectional communication with chat applications
-- 🔒 **Security Support**: Optional SSL/TLS support via OpenSSL integration
+- � **SMTP Email**: RFC 5321 email sending/receiving with MIME support and authentication
+- �🔒 **Security Support**: Optional SSL/TLS support via OpenSSL integration
 - ⚡ **Asynchronous I/O**: Boost.Asio support for high-performance applications
 - 🖥️ **Cross-Platform**: Support for Linux, Windows, and macOS
 
@@ -55,6 +56,7 @@ NetworkQuests/
 │   ├── dns.md              # DNS protocol guide
 │   ├── ftp.md              # FTP protocol guide
 │   ├── websocket.md        # WebSocket protocol guide
+│   ├── smtp.md             # SMTP protocol guide
 │   └── ...                 # Other protocol guides
 ├── include/                 # Header files for shared utilities
 │   └── networkquests/      # Main library headers
@@ -65,6 +67,7 @@ NetworkQuests/
 │   ├── dns/                # DNS client and server
 │   ├── ftp/                # FTP client and server
 │   ├── websocket/          # WebSocket client and server
+│   ├── smtp/               # SMTP client and server
 │   └── utils/              # Shared utilities and common code
 ├── examples/                # Example applications and demos
 │   ├── tcp_echo_server.cpp
@@ -79,6 +82,8 @@ NetworkQuests/
 │   ├── ftp_client.cpp
 │   ├── websocket_server.cpp
 │   ├── websocket_client.cpp
+│   ├── smtp_server.cpp
+│   ├── smtp_client.cpp
 │   └── ...
 └── tests/                   # Unit tests and test utilities
 ```
@@ -185,6 +190,21 @@ dig @127.0.0.1 -p 5353 example.local
 # benchmark ws://localhost:8080/chat 100
 ```
 
+#### SMTP Email Example
+```bash
+# Start SMTP server in one terminal
+./examples/smtp_server
+
+# Use SMTP client in another terminal
+./examples/smtp_client
+
+# In the SMTP client, try these commands:
+# 1. Send Simple Email
+# 2. Send Email with Attachment
+# 3. Send Authenticated Email
+# 4. Test Server Connection
+```
+
 ## Protocol Implementations
 
 ### Currently Implemented
@@ -194,9 +214,9 @@ dig @127.0.0.1 -p 5353 example.local
 - ✅ **DNS** - Domain Name System with full RFC 1035 implementation
 - ✅ **FTP** - File Transfer Protocol with RFC 959 compliance and dual connections
 - ✅ **WebSocket** - Real-time bidirectional communication with RFC 6455 compliance
+- ✅ **SMTP** - Simple Mail Transfer Protocol with RFC 5321 compliance and MIME support
 
 ### Planned Implementations
-- 📋 **SMTP** - Simple Mail Transfer Protocol
 - 📋 **SSH** - Secure Shell Protocol
 - 📋 **SNMP** - Simple Network Management Protocol
 

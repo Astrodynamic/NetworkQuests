@@ -42,6 +42,13 @@ target_link_libraries(websocket_server networkquests)
 add_executable(websocket_client websocket_client.cpp)
 target_link_libraries(websocket_client networkquests)
 
+# SMTP Examples
+add_executable(smtp_server smtp_server.cpp)
+target_link_libraries(smtp_server networkquests)
+
+add_executable(smtp_client smtp_client.cpp)
+target_link_libraries(smtp_client networkquests)
+
 # Install examples
 install(TARGETS 
     tcp_echo_server 
@@ -56,5 +63,7 @@ install(TARGETS
     ftp_client
     websocket_server
     websocket_client
+    smtp_server
+    smtp_client
     DESTINATION ${CMAKE_INSTALL_BINDIR}/examples
 )
