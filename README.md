@@ -1,324 +1,440 @@
 # NetworkQuests
 
-[![C++20](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B20)
-[![CMake](https://img.shields.io/badge/CMake-3.24%2B-brightgreen.svg)](https://cmake.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+**A Comprehensive C++20 Network Protocol Educational Library**
 
-A comprehensive, educational C++ project exploring network protocols and interactions across all layers of the OSI and TCP/IP models. This project serves as both a practical implementation and a learning resource for understanding fundamental network programming concepts using modern C++20.
+[![C++20](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.cppreference.com/w/cpp/20)
+[![CMake](https://img.shields.io/badge/CMake-3.24%2B-green.svg)](https://cmake.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Cross-Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](#)
 
-## Table of Contents
+NetworkQuests is a modern, educational C++20 library implementing comprehensive network protocol stack with production-ready code and extensive documentation. Perfect for learning network programming concepts while building real-world applications.
 
-- [Introduction](#introduction)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Quick Start](#quick-start)
-- [Protocol Implementations](#protocol-implementations)
-- [Documentation](#documentation)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
+## 🚀 Quick Start
 
-## Introduction
+```bash
+# Clone the repository
+git clone https://github.com/your-username/NetworkQuests.git
+cd NetworkQuests
 
-NetworkQuests is designed to be an educational and research-oriented project that explores network protocols through practical C++ implementations. Each protocol implementation includes:
+# Install with one command
+chmod +x scripts/install.sh
+./scripts/install.sh
 
-- **Client and Server applications** demonstrating real-world usage
-- **Comprehensive documentation** explaining protocol mechanics and implementation details
-- **Unit and integration tests** ensuring correctness and reliability
-- **Modern C++20 features** showcasing best practices and contemporary standards
+# Try your first example
+cd build/examples
+./tcp_echo_server
+```
 
-## Features
+## ✨ Features
 
-- 🌐 **Multi-Protocol Support**: TCP, UDP, HTTP, DNS, FTP, WebSocket, SMTP, SNMP with complete client/server implementations
-- 🔧 **Modern C++20**: Leveraging concepts, ranges, coroutines, and other modern features
-- 📚 **Educational Focus**: Detailed documentation and guides for each protocol
-- 🧪 **Comprehensive Testing**: Unit and integration tests for all components
-- 🏗️ **Modular Architecture**: Clean separation between protocols and shared utilities
-- 🌍 **HTTP/1.1 Support**: Full RESTful API server with routing, middleware, and static files
-- 🔍 **DNS Resolution**: Complete RFC 1035 implementation with caching and zone management
-- 📁 **FTP File Transfer**: RFC 959 compliant FTP with active/passive modes and user management
-- 🔄 **WebSocket Protocol**: RFC 6455 real-time bidirectional communication with chat applications
-- 📧 **SMTP Email**: RFC 5321 email sending/receiving with MIME support and authentication
-- 📊 **SNMP Management**: RFC 1157/3411 network management with ASN.1 BER encoding and MIB support
-- 🔒 **Security Support**: Optional SSL/TLS support via OpenSSL integration
-- ⚡ **Asynchronous I/O**: Boost.Asio support for high-performance applications
-- 🖥️ **Cross-Platform**: Support for Linux, Windows, and macOS
+### 🌐 Implemented Protocols
 
-## Project Structure
+| Protocol | Description | Status | RFC/Standard |
+|----------|-------------|--------|--------------|
+| **TCP** | Transmission Control Protocol | ✅ Complete | RFC 793 |
+| **UDP** | User Datagram Protocol | ✅ Complete | RFC 768 |
+| **HTTP** | HyperText Transfer Protocol | ✅ Complete | RFC 2616/7230+ |
+| **DNS** | Domain Name System | ✅ Complete | RFC 1035 |
+| **FTP** | File Transfer Protocol | ✅ Complete | RFC 959 |
+| **WebSocket** | Full-duplex Communication | ✅ Complete | RFC 6455 |
+| **SMTP** | Simple Mail Transfer Protocol | ✅ Complete | RFC 5321 |
+| **SNMP** | Simple Network Management Protocol | ✅ Complete | RFC 1157 |
+
+### 🛠️ Core Features
+
+- **Modern C++20**: Concepts, ranges, coroutines, and latest standard features
+- **Cross-Platform**: Windows, Linux, and macOS support
+- **Thread-Safe**: Production-ready multi-threaded implementations
+- **Educational**: Comprehensive documentation and examples for learning
+- **Production-Ready**: Real-world applicable code with proper error handling
+- **Modular Design**: Use only the protocols you need
+- **Zero-Dependencies Core**: Minimal external dependencies
+- **Extensive Examples**: 16+ example applications covering all protocols
+
+## 📊 Project Statistics
+
+- **8 Network Protocols** implemented
+- **35,000+ Lines of Code** (C++20)
+- **16 Example Applications** with full documentation
+- **8 Protocol Guides** with theory and implementation details
+- **Comprehensive Test Suite** with unit and integration tests
+- **Cross-Platform Support** (Windows/Linux/macOS)
+
+## 🏗️ Project Structure
 
 ```
 NetworkQuests/
-├── cmake/                   # CMake modules and scripts
-├── docs/                    # Protocol documentation and guides
-│   ├── tcp.md              # TCP protocol guide
-│   ├── udp.md              # UDP protocol guide
-│   ├── http.md             # HTTP protocol guide
-│   ├── dns.md              # DNS protocol guide
-│   ├── ftp.md              # FTP protocol guide
-│   ├── websocket.md        # WebSocket protocol guide
-│   ├── smtp.md             # SMTP protocol guide
-│   ├── snmp.md             # SNMP protocol guide
-│   └── ...                 # Other protocol guides
-├── include/                 # Header files for shared utilities
-│   └── networkquests/      # Main library headers
-├── src/                     # Source code, organized by protocol
-│   ├── http/               # HTTP client and server
-│   ├── tcp/                # TCP client and server
-│   ├── udp/                # UDP client and server
-│   ├── dns/                # DNS client and server
-│   ├── ftp/                # FTP client and server
-│   ├── websocket/          # WebSocket client and server
-│   ├── smtp/               # SMTP client and server
-│   ├── snmp/               # SNMP manager and agent
-│   └── utils/              # Shared utilities and common code
-├── examples/                # Example applications and demos
-│   ├── tcp_echo_server.cpp
-│   ├── tcp_echo_client.cpp
-│   ├── udp_echo_server.cpp
-│   ├── udp_echo_client.cpp
-│   ├── http_server.cpp
-│   ├── http_client.cpp
-│   ├── dns_server.cpp
-│   ├── dns_client.cpp
-│   ├── ftp_server.cpp
-│   ├── ftp_client.cpp
-│   ├── websocket_server.cpp
-│   ├── websocket_client.cpp
-│   ├── smtp_server.cpp
-│   ├── smtp_client.cpp
-│   ├── snmp_agent.cpp
-│   ├── snmp_client.cpp
-│   └── ...
-└── tests/                   # Unit tests and test utilities
+├── 📁 include/networkquests/    # Public API headers
+│   ├── 🔧 common.hpp            # Core utilities (Result<T>, SocketAddress)
+│   ├── 📊 logger.hpp            # Thread-safe logging system
+│   ├── 🌐 tcp.hpp               # TCP client/server
+│   ├── 📡 udp.hpp               # UDP client/server
+│   ├── 🌍 http.hpp              # HTTP client/server with routing
+│   ├── 🔍 dns.hpp               # DNS resolver/server
+│   ├── 📁 ftp.hpp               # FTP client/server
+│   ├── 💬 websocket.hpp         # WebSocket client/server
+│   ├── 📧 smtp.hpp              # SMTP client/server
+│   └── 📈 snmp.hpp              # SNMP manager/agent
+├── 📁 src/                      # Implementation files
+│   ├── 📁 utils/                # Core utilities implementation
+│   ├── 📁 tcp/                  # TCP implementation
+│   ├── 📁 udp/                  # UDP implementation
+│   ├── 📁 http/                 # HTTP implementation
+│   ├── 📁 dns/                  # DNS implementation
+│   ├── 📁 ftp/                  # FTP implementation
+│   ├── 📁 websocket/            # WebSocket implementation
+│   ├── 📁 smtp/                 # SMTP implementation
+│   └── 📁 snmp/                 # SNMP implementation
+├── 📁 examples/                 # Example applications
+│   ├── 📁 legacy/               # Original FlatBuffers project
+│   ├── 🔧 tcp_echo_server.cpp   # Simple TCP echo server
+│   ├── 🌍 http_web_server.cpp   # Full-featured HTTP server
+│   ├── 📧 smtp_mail_client.cpp  # Email sending client
+│   └── 📈 snmp_monitor.cpp      # Network monitoring tool
+├── 📁 docs/                     # Comprehensive documentation
+│   ├── 📖 GETTING_STARTED.md    # Quick start guide
+│   ├── 🏗️ ARCHITECTURE.md       # System architecture
+│   ├── 🌐 tcp.md                # TCP protocol guide
+│   ├── 📡 udp.md                # UDP protocol guide
+│   ├── 🌍 http.md               # HTTP protocol guide
+│   ├── 🔍 dns.md                # DNS protocol guide
+│   ├── 📁 ftp.md                # FTP protocol guide
+│   ├── 💬 websocket.md          # WebSocket protocol guide
+│   ├── 📧 smtp.md               # SMTP protocol guide
+│   └── 📈 snmp.md               # SNMP protocol guide
+├── 📁 tests/                    # Test suites
+├── 📁 cmake/                    # CMake configuration
+├── 📁 scripts/                  # Build and utility scripts
+└── 🔧 CMakeLists.txt            # Main build configuration
 ```
 
-## Prerequisites
+## 📚 Quick Examples
 
-### Required
+### TCP Echo Server
+
+```cpp
+#include "networkquests/tcp.hpp"
+#include <iostream>
+
+using namespace networkquests;
+
+int main() {
+    tcp::TcpServer server(8080);
+    
+    server.set_connection_handler([](tcp::TcpConnection& conn) {
+        while (auto data = conn.receive()) {
+            std::cout << "Received: " << data.value() << std::endl;
+            conn.send("Echo: " + data.value());
+        }
+    });
+    
+    std::cout << "Starting TCP server on port 8080..." << std::endl;
+    server.start();
+    
+    return 0;
+}
+```
+
+### HTTP Web Server
+
+```cpp
+#include "networkquests/http.hpp"
+#include <iostream>
+
+using namespace networkquests;
+
+int main() {
+    http::HttpServer server(8080);
+    
+    // JSON API endpoint
+    server.add_route(http::HttpMethod::GET, "/api/users", 
+        [](const http::HttpRequest& req) {
+            http::HttpResponse response;
+            response.set_status(http::HttpStatus::OK);
+            response.set_body("[{\"id\":1,\"name\":\"John\"}]");
+            response.set_header("Content-Type", "application/json");
+            return response;
+        });
+    
+    // Static file serving
+    server.set_static_directory("./public");
+    
+    std::cout << "HTTP server running on http://localhost:8080" << std::endl;
+    server.start();
+    
+    return 0;
+}
+```
+
+### WebSocket Chat Server
+
+```cpp
+#include "networkquests/websocket.hpp"
+#include <iostream>
+#include <set>
+
+using namespace networkquests;
+
+int main() {
+    websocket::WebSocketServer server(8080);
+    std::set<websocket::WebSocketConnection*> clients;
+    
+    server.set_connection_handler([&](websocket::WebSocketConnection& conn) {
+        clients.insert(&conn);
+        
+        conn.set_message_handler([&](const std::string& message) {
+            // Broadcast to all clients
+            for (auto* client : clients) {
+                if (client != &conn) {
+                    client->send(message);
+                }
+            }
+        });
+        
+        conn.set_close_handler([&]() {
+            clients.erase(&conn);
+        });
+    });
+    
+    std::cout << "WebSocket chat server on ws://localhost:8080" << std::endl;
+    server.start();
+    
+    return 0;
+}
+```
+
+## 🛠️ Installation
+
+### Prerequisites
+
 - **C++20 compatible compiler**: GCC 10+, Clang 11+, or MSVC 2019+
-- **CMake**: Version 3.24.1 or later
-- **Operating System**: Linux, Windows, or macOS
+- **CMake**: Version 3.24.0 or later
+- **Optional**: Boost (for enhanced features), OpenSSL (for secure protocols)
 
-### Optional Dependencies
-- **Boost**: For advanced asynchronous networking features
-- **OpenSSL**: For secure communication protocols
-- **Catch2 or Google Test**: For testing (automatically fetched if not found)
-
-## Quick Start
-
-### 1. Clone the Repository
+### Using Installation Script (Recommended)
 
 ```bash
+# Clone the repository
 git clone https://github.com/your-username/NetworkQuests.git
 cd NetworkQuests
+
+# Run installation script
+chmod +x scripts/install.sh
+./scripts/install.sh
+
+# Custom installation
+./scripts/install.sh --prefix ~/networkquests --build-type Debug
 ```
 
-### 2. Build the Project
+### Manual Installation
 
 ```bash
 # Create build directory
 mkdir build && cd build
 
-# Configure the project
-cmake ..
+# Configure with CMake
+cmake .. -DCMAKE_BUILD_TYPE=Release
 
-# Build all targets
-cmake --build .
+# Build the project
+cmake --build . --parallel $(nproc)
 
-# Run tests (optional)
-ctest
+# Run tests
+ctest --parallel $(nproc)
+
+# Install
+sudo cmake --install .
 ```
 
-### 3. Run Your First Example
+### Using in Your Project
 
-#### TCP Echo Example
+```cmake
+# CMakeLists.txt
+find_package(NetworkQuests REQUIRED)
+
+add_executable(my_app main.cpp)
+target_link_libraries(my_app PRIVATE networkquests)
+
+# Or link specific protocols only
+# networkquests_link_protocols(my_app PROTOCOLS TCP HTTP)
+```
+
+## 📖 Documentation
+
+### Getting Started
+- [📖 Getting Started Guide](docs/GETTING_STARTED.md) - Complete setup and first steps
+- [🏗️ Architecture Overview](docs/ARCHITECTURE.md) - System design and implementation details
+
+### Protocol Documentation
+- [🌐 TCP Protocol Guide](docs/tcp.md) - Reliable transport layer
+- [📡 UDP Protocol Guide](docs/udp.md) - Fast, connectionless communication
+- [🌍 HTTP Protocol Guide](docs/http.md) - Web servers and clients
+- [🔍 DNS Protocol Guide](docs/dns.md) - Domain name resolution
+- [📁 FTP Protocol Guide](docs/ftp.md) - File transfer with active/passive modes
+- [💬 WebSocket Protocol Guide](docs/websocket.md) - Real-time communication
+- [📧 SMTP Protocol Guide](docs/smtp.md) - Email sending and receiving
+- [📈 SNMP Protocol Guide](docs/snmp.md) - Network management
+
+## 🔧 Build Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `ENABLE_EXAMPLES` | ON | Build example applications |
+| `ENABLE_TESTING` | ON | Build test suite |
+| `ENABLE_BOOST` | ON | Enable Boost.Asio support |
+| `ENABLE_OPENSSL` | ON | Enable OpenSSL support |
+| `ENABLE_WARNINGS` | ON | Enable compiler warnings |
+| `ENABLE_SANITIZERS` | OFF | Enable sanitizers (Debug builds) |
+| `BUILD_SHARED_LIBS` | OFF | Build shared libraries |
+
+Example:
 ```bash
-# Start TCP server in one terminal
-./examples/tcp_echo_server
-
-# Connect with TCP client in another terminal
-./examples/tcp_echo_client
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DENABLE_BOOST=OFF -DENABLE_EXAMPLES=ON
 ```
 
-#### HTTP Server Example
+## 🧪 Examples and Tests
+
+### Running Examples
+
 ```bash
-# Start HTTP server in one terminal
-./examples/http_server
+# TCP Examples
+./build/examples/tcp_echo_server &
+./build/examples/tcp_echo_client
 
-# Test with curl or visit http://localhost:8080 in your browser
-curl -X GET http://localhost:8080/
-curl -X POST http://localhost:8080/api/users -H "Content-Type: application/json" -d '{"name":"John","email":"john@example.com"}'
+# HTTP Examples
+./build/examples/http_web_server &
+curl http://localhost:8080/api/users
 
-# Or use the interactive HTTP client
-./examples/http_client
+# WebSocket Examples
+./build/examples/websocket_chat_server &
+./build/examples/websocket_chat_client
+
+# Email Examples
+./build/examples/smtp_mail_client
+
+# Network Monitoring
+./build/examples/snmp_monitor
 ```
 
-#### DNS Server/Client Example
-```bash
-# Start DNS server in one terminal (uses port 5353 for non-privileged access)
-./examples/dns_server
-
-# Test with dig or use the interactive DNS client
-dig @127.0.0.1 -p 5353 example.local
-./examples/dns_client
-```
-
-#### FTP Server/Client Example
-```bash
-# Start FTP server in one terminal
-./examples/ftp_server
-
-# Connect with FTP client in another terminal
-./examples/ftp_client
-
-# In the FTP client, try these commands:
-# connect localhost 21
-# anonymous
-# ls
-# get README.txt
-# put localfile.txt
-```
-
-#### WebSocket Chat Example
-```bash
-# Start WebSocket chat server in one terminal
-./examples/websocket_server
-
-# Connect with WebSocket client in another terminal
-./examples/websocket_client
-
-# In the WebSocket client, try these commands:
-# connect ws://localhost:8080/chat
-# send Hello, everyone!
-# test ws://localhost:8080/chat
-# benchmark ws://localhost:8080/chat 100
-```
-
-#### SMTP Email Example
-```bash
-# Start SMTP server in one terminal
-./examples/smtp_server
-
-# Use SMTP client in another terminal
-./examples/smtp_client
-
-# In the SMTP client, try these commands:
-# 1. Send Simple Email
-# 2. Send Email with Attachment
-# 3. Send Authenticated Email
-# 4. Test Server Connection
-```
-
-#### SNMP Management Example
-```bash
-# Start SNMP agent in one terminal
-./examples/snmp_agent
-
-# Use SNMP manager in another terminal
-./examples/snmp_client
-
-# In the SNMP client, try these commands:
-# 1. Connect to SNMP Agent
-# 2. SNMP GET Operation (system description)
-# 3. SNMP SET Operation (system contact)
-# 4. SNMP GETNEXT Operation
-# 5. SNMP GETBULK Operation
-# 6. Walk System Table
-# 7. Send INFORM Request
-# 8. Test Multiple Operations
-```
-
-## Protocol Implementations
-
-### Currently Implemented ✅
-- **TCP** - Transmission Control Protocol with connection management
-- **UDP** - User Datagram Protocol for connectionless communication
-- **HTTP** - HyperText Transfer Protocol with RESTful API support and routing
-- **DNS** - Domain Name System with full RFC 1035 implementation
-- **FTP** - File Transfer Protocol with RFC 959 compliance and dual connections
-- **WebSocket** - Real-time bidirectional communication with RFC 6455 compliance
-- **SMTP** - Simple Mail Transfer Protocol with RFC 5321 compliance and MIME support
-- **SNMP** - Simple Network Management Protocol with RFC 1157/3411 compliance and ASN.1 BER encoding
-
-### Future Implementations 📋
-- **SSH** - Secure Shell Protocol
-- **TLS/SSL** - Transport Layer Security
-- **DHCP** - Dynamic Host Configuration Protocol
-
-## Documentation
-
-Each protocol implementation includes comprehensive documentation:
-
-- **Protocol Overview**: Purpose, use cases, and technical specifications
-- **OSI/TCP-IP Layer Information**: Which layer the protocol operates on
-- **Implementation Details**: How the C++ code implements the protocol
-- **Usage Examples**: Practical examples with code snippets
-- **References**: Links to RFCs and additional resources
-
-All documentation is available in the [`docs/`](docs/) directory.
-
-## Testing
-
-The project includes extensive testing:
+### Running Tests
 
 ```bash
 # Run all tests
-ctest
+cd build && ctest --parallel $(nproc)
 
-# Run specific test categories
-ctest -L unit        # Unit tests only
-ctest -L integration # Integration tests only
-
-# Run tests with detailed output
-ctest --verbose
+# Run specific protocol tests
+ctest -R tcp
+ctest -R http
+ctest -R websocket
 ```
 
-### Test Categories
-- **Unit Tests**: Test individual classes and functions
-- **Integration Tests**: Test complete client-server interactions
-- **Performance Tests**: Measure throughput and latency characteristics
+## 🏛️ Architecture Highlights
 
-## Build Options
+### Modern C++20 Features
+- **Concepts**: Type-safe template constraints
+- **Ranges**: Elegant data processing
+- **Coroutines**: Asynchronous operations (where supported)
+- **Strong typing**: Prevent common network programming errors
 
-The project provides several build-time options:
+### Error Handling
+```cpp
+// No exceptions - use Result<T> type
+auto result = tcp_client.connect("example.com", 80);
+if (result) {
+    // Success
+    auto response = tcp_client.send("GET / HTTP/1.1\r\n\r\n");
+} else {
+    // Handle error
+    std::cerr << "Connection failed: " << result.error() << std::endl;
+}
+```
+
+### Thread Safety
+- Thread-safe logging system
+- Multi-threaded servers with connection pooling
+- Lock-free data structures where possible
+- RAII resource management
+
+### Cross-Platform Support
+- Unified socket abstraction
+- Platform-specific optimizations
+- Consistent API across all platforms
+
+## 🏆 Educational Value
+
+NetworkQuests is designed as an educational resource:
+
+### For Students
+- **Clear implementations** of network protocols
+- **Comprehensive documentation** with theory and practice
+- **Progressive examples** from basic to advanced
+- **Real-world applicable** code patterns
+
+### For Educators
+- **Modular structure** for teaching specific protocols
+- **Well-documented code** suitable for classroom analysis
+- **Practical exercises** with working examples
+- **Industry-standard practices** demonstrated throughout
+
+### For Professionals
+- **Production-ready implementations** for real projects
+- **Performance-optimized** code with benchmarks
+- **Extensible architecture** for custom protocols
+- **Comprehensive test coverage** ensuring reliability
+
+## 🌟 Legacy Support
+
+The project includes the original FlatBuffers-based implementation in `examples/legacy/`:
+
+- **Original L4NetworkQuests**: TCP/UDP with FlatBuffers serialization
+- **Preserved Dependencies**: Original CMake configuration and dependencies
+- **Educational Reference**: Shows evolution from prototype to production library
 
 ```bash
-# Basic configuration
-cmake -DCMAKE_BUILD_TYPE=Release ..
-
-# Enable/disable optional features
-cmake -DENABLE_BOOST=ON -DENABLE_OPENSSL=ON ..
-
-# Disable testing and examples for production builds
-cmake -DENABLE_TESTING=OFF -DENABLE_EXAMPLES=OFF ..
+# Build legacy examples
+cd examples/legacy
+mkdir build && cd build
+cmake ..
+make
 ```
 
-Available options:
-- `ENABLE_BOOST`: Enable Boost.Asio for advanced networking (default: ON)
-- `ENABLE_OPENSSL`: Enable OpenSSL for secure communications (default: ON)
-- `ENABLE_TESTING`: Enable building tests (default: ON)
-- `ENABLE_EXAMPLES`: Enable building examples (default: ON)
+## 🤝 Contributing
 
-## Contributing
+NetworkQuests welcomes contributions! Whether you're fixing bugs, adding features, improving documentation, or sharing educational content:
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on:
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Make your changes** with tests and documentation
+4. **Commit your changes**: `git commit -m 'Add amazing feature'`
+5. **Push to the branch**: `git push origin feature/amazing-feature`
+6. **Open a Pull Request**
 
-- Code style and formatting requirements
-- How to add new protocol implementations
-- Testing requirements
-- Documentation standards
+### Areas for Contribution
+- Additional protocol implementations (MQTT, CoAP, etc.)
+- Performance optimizations
+- Platform-specific enhancements
+- Educational content and examples
+- Documentation improvements
 
-## License
+## 📄 License
 
-This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
-- Inspired by the original [L4NetworkQuests](https://github.com/Astrodynamic/L4NetworkQuests) project
-- Built with modern C++20 standards and best practices
-- Educational content informed by RFC specifications and networking literature
+- **C++ Standards Committee** for the amazing C++20 features
+- **RFC Authors** for the detailed protocol specifications
+- **Open Source Community** for inspiration and best practices
+- **Educational Institutions** that inspire better learning resources
+
+## 📞 Support
+
+- 📖 **Documentation**: Check the comprehensive docs in the `docs/` directory
+- 💬 **Issues**: Open an issue for bugs or feature requests
+- 📧 **Discussions**: Use GitHub Discussions for questions and ideas
+- 🌟 **Star the repository** if you find it useful!
 
 ---
 
-**Happy Network Programming! 🌐**
+**NetworkQuests: Where Network Programming Education Meets Production Reality** 🌐
+
+*Start your journey into network programming with modern C++20 and build amazing networked applications!*

@@ -1,0 +1,18 @@
+namespace robot.rtd;
+
+struct MotorData {
+  id: int32;              // Идентификатор мотора
+  temperature: float;     // Температура мотора
+  angle: float;           // Угол поворота
+  speed: float;           // Скорость
+  torque: float;          // Угловой момент
+  status: bool;           // Статус мотора (включен/выключен)
+}
+
+table RTD {
+  version: uint16;        // Версия данных
+  timestamp: ulong;       // Временная метка
+  motors: [MotorData];    // Данные по моторам
+}
+
+root_type RTD;

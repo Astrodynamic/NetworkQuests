@@ -1,0 +1,7 @@
+namespace robot.common;
+
+struct Vector3D {
+  x: double;
+  y: double;
+  z: double;
+}
