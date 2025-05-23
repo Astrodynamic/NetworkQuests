@@ -57,7 +57,6 @@ make -j$(nproc)
 - **35,000+ Lines of Code** (C++20)
 - **16 Example Applications** with full documentation
 - **8 Protocol Guides** with theory and implementation details
-- **Comprehensive Test Suite** with unit and integration tests
 - **Cross-Platform Support** (Windows/Linux/macOS)
 
 ## 🏗️ Project Structure
@@ -71,7 +70,6 @@ NetworkQuests/
 ├── 📁 examples/                 # Example applications
 │   └── 📁 flatbuffers/          # FlatBuffers network examples
 ├── 📁 docs/                     # Comprehensive documentation
-├── 📁 tests/                    # Test framework (placeholder)
 ├── 📁 cmake/                    # CMake configuration
 └── 📁 scripts/                  # Build and utility scripts
 ```
@@ -171,9 +169,6 @@ cmake .. -DCMAKE_BUILD_TYPE=Release
 # Build the project
 cmake --build . --parallel $(nproc)
 
-# Run tests
-ctest --parallel $(nproc)
-
 # Install
 sudo cmake --install .
 ```
@@ -213,7 +208,6 @@ target_link_libraries(my_app PRIVATE networkquests)
 | Option | Default | Description |
 |--------|---------|-------------|
 | `ENABLE_EXAMPLES` | ON | Build example applications |
-| `ENABLE_TESTING` | ON | Build test framework |
 | `ENABLE_BOOST` | ON | Enable Boost.Asio support |
 | `ENABLE_OPENSSL` | ON | Enable OpenSSL support |
 | `BUILD_FLATBUFFERS_EXAMPLES` | OFF | Build FlatBuffers examples |
@@ -223,7 +217,7 @@ Example:
 cmake .. -DCMAKE_BUILD_TYPE=Debug -DBUILD_FLATBUFFERS_EXAMPLES=ON
 ```
 
-## 🧪 Examples and Tests
+## 🧪 Examples
 
 ### Running Examples
 
@@ -260,13 +254,6 @@ make
 cd examples/flatbuffers/build
 ./tcp_server &
 ./tcp_client
-```
-
-### Running Tests
-
-```bash
-# Run basic tests
-cd build && ctest --parallel $(nproc)
 ```
 
 ## 🏛️ Architecture Highlights
@@ -319,7 +306,6 @@ NetworkQuests is designed as an educational resource:
 - **Production-ready implementations** for real projects
 - **Performance-optimized** code with benchmarks
 - **Extensible architecture** for custom protocols
-- **Comprehensive test coverage** ensuring reliability
 
 ## 🌟 FlatBuffers Examples
 
@@ -343,7 +329,7 @@ NetworkQuests welcomes contributions! Whether you're fixing bugs, adding feature
 
 1. **Fork the repository**
 2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Make your changes** with tests and documentation
+3. **Make your changes** with documentation
 4. **Commit your changes**: `git commit -m 'Add amazing feature'`
 5. **Push to the branch**: `git push origin feature/amazing-feature`
 6. **Open a Pull Request**

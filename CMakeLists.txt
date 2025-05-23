@@ -18,7 +18,6 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # Build options
 option(ENABLE_EXAMPLES "Build example applications" ON)
-option(ENABLE_TESTING "Build tests" ON)
 option(ENABLE_BOOST "Enable Boost.Asio support" ON)
 option(ENABLE_OPENSSL "Enable OpenSSL support" ON)
 option(ENABLE_WARNINGS "Enable compiler warnings" ON)
@@ -53,22 +52,6 @@ if(ENABLE_OPENSSL)
     else()
         message(WARNING "OpenSSL not found, disabling SSL/TLS support")
         set(ENABLE_OPENSSL OFF)
-    endif()
-endif()
-
-# Testing framework
-if(ENABLE_TESTING)
-    enable_testing()
-    find_package(Catch2 QUIET)
-    if(NOT Catch2_FOUND)
-        message(STATUS "Catch2 not found, will fetch from GitHub")
-        include(FetchContent)
-        FetchContent_Declare(
-            Catch2
-            GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-            GIT_TAG v3.4.0
-        )
-        FetchContent_MakeAvailable(Catch2)
     endif()
 endif()
 
@@ -113,10 +96,6 @@ if(ENABLE_EXAMPLES)
     add_subdirectory(examples)
 endif()
 
-if(ENABLE_TESTING)
-    add_subdirectory(tests)
-endif()
-
 # Create package configuration files
 if(INSTALL_NETWORKQUESTS)
     include(CMakePackageConfigHelpers)
@@ -158,7 +137,7 @@ if(INSTALL_NETWORKQUESTS)
     
     # Install license and readme
     install(
-        FILES LICENSE README.md
+        FILES LICENSE README.md PROGRESS.md
         DESTINATION share/doc/NetworkQuests
     )
     
@@ -168,10 +147,10 @@ if(INSTALL_NETWORKQUESTS)
         DESTINATION share/NetworkQuests/scripts
     )
     
-    # Install legacy examples
+    # Install FlatBuffers examples
     install(
-        DIRECTORY examples/legacy/
-        DESTINATION share/NetworkQuests/legacy
+        DIRECTORY examples/flatbuffers/
+        DESTINATION share/NetworkQuests/flatbuffers
         FILES_MATCHING 
             PATTERN "*.cpp" 
             PATTERN "*.cc" 
@@ -208,7 +187,6 @@ message(STATUS "System:            ${CMAKE_SYSTEM_NAME} ${CMAKE_SYSTEM_VERSION}"
 message(STATUS "")
 message(STATUS "Features:")
 message(STATUS "  Examples:        ${ENABLE_EXAMPLES}")
-message(STATUS "  Testing:         ${ENABLE_TESTING}")
 message(STATUS "  Boost support:   ${ENABLE_BOOST}")
 message(STATUS "  OpenSSL support: ${ENABLE_OPENSSL}")
 message(STATUS "  Warnings:        ${ENABLE_WARNINGS}")
