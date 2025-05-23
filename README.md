@@ -30,12 +30,13 @@ NetworkQuests is designed to be an educational and research-oriented project tha
 
 ## Features
 
-- 🌐 **Multi-Protocol Support**: TCP, UDP, HTTP with complete client/server implementations
+- 🌐 **Multi-Protocol Support**: TCP, UDP, HTTP, DNS with complete client/server implementations
 - 🔧 **Modern C++20**: Leveraging concepts, ranges, coroutines, and other modern features
 - 📚 **Educational Focus**: Detailed documentation and guides for each protocol
 - 🧪 **Comprehensive Testing**: Unit and integration tests for all components
 - 🏗️ **Modular Architecture**: Clean separation between protocols and shared utilities
 - 🌍 **HTTP/1.1 Support**: Full RESTful API server with routing, middleware, and static files
+- 🔍 **DNS Resolution**: Complete RFC 1035 implementation with caching and zone management
 - 🔒 **Security Support**: Optional SSL/TLS support via OpenSSL integration
 - ⚡ **Asynchronous I/O**: Boost.Asio support for high-performance applications
 - 🖥️ **Cross-Platform**: Support for Linux, Windows, and macOS
@@ -49,6 +50,7 @@ NetworkQuests/
 │   ├── tcp.md              # TCP protocol guide
 │   ├── udp.md              # UDP protocol guide
 │   ├── http.md             # HTTP protocol guide
+│   ├── dns.md              # DNS protocol guide
 │   └── ...                 # Other protocol guides
 ├── include/                 # Header files for shared utilities
 │   └── networkquests/      # Main library headers
@@ -56,22 +58,21 @@ NetworkQuests/
 │   ├── http/               # HTTP client and server
 │   ├── tcp/                # TCP client and server
 │   ├── udp/                # UDP client and server
-│   ├── dns/                # DNS resolver implementation
+│   ├── dns/                # DNS client and server
 │   ├── ftp/                # FTP client and server
-│   ├── websocket/          # WebSocket implementation
-│   └── utils/              # Shared utilities and common functionality
-├── tests/                   # Unit and integration tests
-│   ├── unit/               # Unit tests for individual components
-│   └── integration/        # Integration tests for full protocols
-├── examples/                # Example applications for each protocol
-│   ├── tcp_echo_server.cpp # TCP echo server example
-│   ├── tcp_echo_client.cpp # TCP echo client example
-│   ├── udp_echo_server.cpp # UDP echo server example
-│   ├── udp_echo_client.cpp # UDP echo client example
-│   ├── http_server.cpp     # HTTP RESTful API server example
-│   ├── http_client.cpp     # HTTP interactive client example
-│   └── ...                 # Other protocol examples
-└── README.md               # This file
+│   ├── websocket/          # WebSocket client and server
+│   └── utils/              # Shared utilities and common code
+├── examples/                # Example applications and demos
+│   ├── tcp_echo_server.cpp
+│   ├── tcp_echo_client.cpp
+│   ├── udp_echo_server.cpp
+│   ├── udp_echo_client.cpp
+│   ├── http_server.cpp
+│   ├── http_client.cpp
+│   ├── dns_server.cpp
+│   ├── dns_client.cpp
+│   └── ...
+└── tests/                   # Unit tests and test utilities
 ```
 
 ## Prerequisites
@@ -116,10 +117,10 @@ ctest
 #### TCP Echo Example
 ```bash
 # Start TCP server in one terminal
-./examples/tcp_server
+./examples/tcp_echo_server
 
 # Connect with TCP client in another terminal
-./examples/tcp_client
+./examples/tcp_echo_client
 ```
 
 #### HTTP Server Example
@@ -135,16 +136,26 @@ curl -X POST http://localhost:8080/api/users -H "Content-Type: application/json"
 ./examples/http_client
 ```
 
+#### DNS Server/Client Example
+```bash
+# Start DNS server in one terminal (uses port 5353 for non-privileged access)
+./examples/dns_server
+
+# Test with dig or use the interactive DNS client
+dig @127.0.0.1 -p 5353 example.local
+./examples/dns_client
+```
+
 ## Protocol Implementations
 
 ### Currently Implemented
 - ✅ **TCP** - Transmission Control Protocol with connection management
 - ✅ **UDP** - User Datagram Protocol for connectionless communication
 - ✅ **HTTP** - HyperText Transfer Protocol with RESTful API support and routing
-- 🚧 **DNS** - Domain Name System resolver (in progress)
+- ✅ **DNS** - Domain Name System with full RFC 1035 implementation
+- 🚧 **FTP** - File Transfer Protocol (in progress)
 
 ### Planned Implementations
-- 📋 **FTP** - File Transfer Protocol
 - 📋 **WebSocket** - Real-time bidirectional communication
 - 📋 **SMTP** - Simple Mail Transfer Protocol
 - 📋 **SSH** - Secure Shell Protocol

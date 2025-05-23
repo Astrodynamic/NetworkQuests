@@ -21,6 +21,13 @@ target_link_libraries(http_server networkquests)
 add_executable(http_client http_client.cpp)
 target_link_libraries(http_client networkquests)
 
+# DNS Examples
+add_executable(dns_server dns_server.cpp)
+target_link_libraries(dns_server networkquests)
+
+add_executable(dns_client dns_client.cpp)
+target_link_libraries(dns_client networkquests)
+
 # Install examples
 install(TARGETS 
     tcp_echo_server 
@@ -29,5 +36,7 @@ install(TARGETS
     udp_echo_client
     http_server
     http_client
+    dns_server
+    dns_client
     DESTINATION ${CMAKE_INSTALL_BINDIR}/examples
 )
