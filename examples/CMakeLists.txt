@@ -14,11 +14,20 @@ target_link_libraries(udp_echo_server networkquests)
 add_executable(udp_echo_client udp_echo_client.cpp)
 target_link_libraries(udp_echo_client networkquests)
 
+# HTTP Examples
+add_executable(http_server http_server.cpp)
+target_link_libraries(http_server networkquests)
+
+add_executable(http_client http_client.cpp)
+target_link_libraries(http_client networkquests)
+
 # Install examples
 install(TARGETS 
     tcp_echo_server 
     tcp_echo_client 
     udp_echo_server
     udp_echo_client
+    http_server
+    http_client
     DESTINATION ${CMAKE_INSTALL_BINDIR}/examples
 )

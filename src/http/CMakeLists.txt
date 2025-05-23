@@ -1,6 +1,28 @@
-# HTTP Protocol Implementation (placeholder)
-# TODO: Implement HTTP protocol classes
+# HTTP Protocol Implementation
 
-# For now, create an empty library to satisfy CMake dependencies
-add_library(networkquests_http INTERFACE)
-target_link_libraries(networkquests_http INTERFACE networkquests_core)
+# Create HTTP library
+add_library(networkquests_http STATIC
+    http_message.cpp
+    http_utils.cpp
+    http_client.cpp
+    http_server.cpp
+)
+
+# Set target properties
+target_include_directories(networkquests_http
+    PUBLIC
+        ${CMAKE_SOURCE_DIR}/include
+)
+
+# Link dependencies
+target_link_libraries(networkquests_http
+    PUBLIC
+        networkquests_core
+        networkquests_tcp
+)
+
+# Install targets
+install(TARGETS networkquests_http
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)

@@ -39,7 +39,11 @@ enum class NetworkError {
     TimeoutExpired,
     InvalidAddress,
     ProtocolError,
-    SecurityError
+    SecurityError,
+    SocketError,
+    AddressResolutionFailed,
+    AlreadyConnected,
+    InvalidArgument
 };
 
 // Make NetworkError compatible with std::error_code
@@ -73,6 +77,14 @@ public:
                 return "Protocol error";
             case NetworkError::SecurityError:
                 return "Security error";
+            case NetworkError::SocketError:
+                return "Socket error";
+            case NetworkError::AddressResolutionFailed:
+                return "Address resolution failed";
+            case NetworkError::AlreadyConnected:
+                return "Already connected";
+            case NetworkError::InvalidArgument:
+                return "Invalid argument";
             default:
                 return "Unknown error";
         }
@@ -101,6 +113,12 @@ public:
     
     // Constructor for errors
     Result(std::error_code error) : data_(error) {}
+    
+    // Static factory methods
+    template<typename... Args>
+    static Result<T> success(Args&&... args) {
+        return Result<T>(T(std::forward<Args>(args)...));
+    }
     
     bool has_value() const noexcept {
         return std::holds_alternative<T>(data_);
@@ -158,6 +176,11 @@ public:
     Result() = default;
     Result(std::error_code error) : error_(error) {}
     
+    // Static factory method
+    static Result<void> success() {
+        return Result<void>();
+    }
+    
     bool has_value() const noexcept {
         return !error_.has_value();
     }
@@ -184,6 +207,11 @@ public:
 template<typename T>
 Result<T> make_error_result(std::error_code ec) {
     return Result<T>(ec);
+}
+
+template<typename T>
+Result<T> make_error_result(NetworkError err) {
+    return Result<T>(make_error_code(err));
 }
 
 // Concepts for type safety
