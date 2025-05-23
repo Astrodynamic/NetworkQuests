@@ -1,0 +1,5 @@
+{
+  "snapshot": "snapshot-20250523-63e81363-b450-4dc4-9bcd-6ac1b566ff9c",
+  "install": "cmake -S . -B build && cmake --build build",
+  "terminals": []
+}
