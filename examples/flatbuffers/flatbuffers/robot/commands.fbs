@@ -1,0 +1,36 @@
+include "common.fbs";
+
+namespace robot.command;
+
+struct C_Space {
+  position: robot.common.Vector3D;
+  orientation: robot.common.Vector3D;
+}
+
+struct J_Space {
+  joint: [double:6];
+}
+
+union MoveData {
+  C_Space,
+  J_Space
+}
+
+table MoveCommand {
+  move: MoveData;
+}
+
+table StopCommand {
+}
+
+union CommandData {
+  MoveCommand,
+  StopCommand
+}
+
+table Command {
+  timestamp: ulong;
+  data: CommandData (required);
+}
+
+root_type Command;

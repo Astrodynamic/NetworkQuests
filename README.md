@@ -16,17 +16,13 @@ NetworkQuests is a modern, educational C++20 library implementing comprehensive 
 git clone https://github.com/your-username/NetworkQuests.git
 cd NetworkQuests
 
-# Clean up any old modules (first time setup)
-chmod +x scripts/cleanup.sh
-./scripts/cleanup.sh
-
-# Install with one command
-chmod +x scripts/install.sh
-./scripts/install.sh
+# Build and run examples
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+make -j$(nproc)
 
 # Try your first example
-cd build/examples
-./tcp_echo_server
+./examples/tcp_echo_server
 ```
 
 ## ✨ Features
@@ -73,9 +69,9 @@ NetworkQuests/
 ├── 📁 include/networkquests/    # Public API headers
 ├── 📁 src/                      # Implementation files  
 ├── 📁 examples/                 # Example applications
-│   └── 📁 legacy/               # Original FlatBuffers project
+│   └── 📁 flatbuffers/          # FlatBuffers network examples
 ├── 📁 docs/                     # Comprehensive documentation
-├──  tests/                    # Test suites
+├── 📁 tests/                    # Test framework (placeholder)
 ├── 📁 cmake/                    # CMake configuration
 └── 📁 scripts/                  # Build and utility scripts
 ```
@@ -140,43 +136,6 @@ int main() {
 }
 ```
 
-### WebSocket Chat Server
-
-```cpp
-#include "networkquests/websocket.hpp"
-#include <iostream>
-#include <set>
-
-using namespace networkquests;
-
-int main() {
-    websocket::WebSocketServer server(8080);
-    std::set<websocket::WebSocketConnection*> clients;
-    
-    server.set_connection_handler([&](websocket::WebSocketConnection& conn) {
-        clients.insert(&conn);
-        
-        conn.set_message_handler([&](const std::string& message) {
-            // Broadcast to all clients
-            for (auto* client : clients) {
-                if (client != &conn) {
-                    client->send(message);
-                }
-            }
-        });
-        
-        conn.set_close_handler([&]() {
-            clients.erase(&conn);
-        });
-    });
-    
-    std::cout << "WebSocket chat server on ws://localhost:8080" << std::endl;
-    server.start();
-    
-    return 0;
-}
-```
-
 ## 🛠️ Installation
 
 ### Prerequisites
@@ -191,10 +150,6 @@ int main() {
 # Clone the repository
 git clone https://github.com/your-username/NetworkQuests.git
 cd NetworkQuests
-
-# Clean up old modules (first time)
-chmod +x scripts/cleanup.sh
-./scripts/cleanup.sh
 
 # Run installation script
 chmod +x scripts/install.sh
@@ -258,16 +213,14 @@ target_link_libraries(my_app PRIVATE networkquests)
 | Option | Default | Description |
 |--------|---------|-------------|
 | `ENABLE_EXAMPLES` | ON | Build example applications |
-| `ENABLE_TESTING` | ON | Build test suite |
+| `ENABLE_TESTING` | ON | Build test framework |
 | `ENABLE_BOOST` | ON | Enable Boost.Asio support |
 | `ENABLE_OPENSSL` | ON | Enable OpenSSL support |
-| `ENABLE_WARNINGS` | ON | Enable compiler warnings |
-| `ENABLE_SANITIZERS` | OFF | Enable sanitizers (Debug builds) |
-| `BUILD_SHARED_LIBS` | OFF | Build shared libraries |
+| `BUILD_FLATBUFFERS_EXAMPLES` | OFF | Build FlatBuffers examples |
 
 Example:
 ```bash
-cmake .. -DCMAKE_BUILD_TYPE=Debug -DENABLE_BOOST=OFF -DENABLE_EXAMPLES=ON
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DBUILD_FLATBUFFERS_EXAMPLES=ON
 ```
 
 ## 🧪 Examples and Tests
@@ -280,38 +233,47 @@ cmake .. -DCMAKE_BUILD_TYPE=Debug -DENABLE_BOOST=OFF -DENABLE_EXAMPLES=ON
 ./build/examples/tcp_echo_client
 
 # HTTP Examples
-./build/examples/http_web_server &
+./build/examples/http_server &
 curl http://localhost:8080/api/users
 
 # WebSocket Examples
-./build/examples/websocket_chat_server &
-./build/examples/websocket_chat_client
+./build/examples/websocket_server &
+./build/examples/websocket_client
 
 # Email Examples
-./build/examples/smtp_mail_client
+./build/examples/smtp_client
 
 # Network Monitoring
-./build/examples/snmp_monitor
+./build/examples/snmp_agent
+```
+
+### FlatBuffers Examples
+
+For educational purposes, NetworkQuests includes examples using FlatBuffers:
+
+```bash
+# Enable FlatBuffers examples
+cmake .. -DBUILD_FLATBUFFERS_EXAMPLES=ON
+make
+
+# Run FlatBuffers TCP example
+cd examples/flatbuffers/build
+./tcp_server &
+./tcp_client
 ```
 
 ### Running Tests
 
 ```bash
-# Run all tests
+# Run basic tests
 cd build && ctest --parallel $(nproc)
-
-# Run specific protocol tests
-ctest -R tcp
-ctest -R http
-ctest -R websocket
 ```
 
 ## 🏛️ Architecture Highlights
 
 ### Modern C++20 Features
 - **Concepts**: Type-safe template constraints
-- **Ranges**: Elegant data processing
-- **Coroutines**: Asynchronous operations (where supported)
+- **Ranges**: Elegant data processing  
 - **Strong typing**: Prevent common network programming errors
 
 ### Error Handling
@@ -330,7 +292,6 @@ if (result) {
 ### Thread Safety
 - Thread-safe logging system
 - Multi-threaded servers with connection pooling
-- Lock-free data structures where possible
 - RAII resource management
 
 ### Cross-Platform Support
@@ -360,39 +321,21 @@ NetworkQuests is designed as an educational resource:
 - **Extensible architecture** for custom protocols
 - **Comprehensive test coverage** ensuring reliability
 
-## 🌟 Legacy Support
+## 🌟 FlatBuffers Examples
 
-The project includes the original FlatBuffers-based implementation in `examples/legacy/`:
+The project includes educational FlatBuffers examples in `examples/flatbuffers/`:
 
-- **Original L4NetworkQuests**: TCP/UDP with FlatBuffers serialization
-- **Preserved Dependencies**: Original CMake configuration and dependencies
-- **Educational Reference**: Shows evolution from prototype to production library
+- **Robot Control Protocol**: TCP/UDP with FlatBuffers serialization
+- **Real-time Data**: Motor telemetry and command structures
+- **Educational Reference**: Shows alternative serialization approaches
 
 ```bash
-# Build legacy examples
-cd examples/legacy
+# Build FlatBuffers examples
+cd examples/flatbuffers
 mkdir build && cd build
 cmake ..
 make
 ```
-
-## 🧹 Project Maintenance
-
-### Cleanup Old Modules
-
-If you're upgrading from a previous version or want to clean build artifacts:
-
-```bash
-# Run cleanup script to remove old modules and build artifacts
-chmod +x scripts/cleanup.sh
-./scripts/cleanup.sh
-```
-
-This will remove:
-- Old legacy directories from root (`flatbuffers/`, `tcp/`, `udp/`)
-- Build artifacts and generated files
-- IDE configuration files
-- Temporary and cache files
 
 ## 🤝 Contributing
 
