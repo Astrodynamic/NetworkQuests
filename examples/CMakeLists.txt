@@ -35,6 +35,13 @@ target_link_libraries(ftp_server networkquests)
 add_executable(ftp_client ftp_client.cpp)
 target_link_libraries(ftp_client networkquests)
 
+# WebSocket Examples
+add_executable(websocket_server websocket_server.cpp)
+target_link_libraries(websocket_server networkquests)
+
+add_executable(websocket_client websocket_client.cpp)
+target_link_libraries(websocket_client networkquests)
+
 # Install examples
 install(TARGETS 
     tcp_echo_server 
@@ -47,5 +54,7 @@ install(TARGETS
     dns_client
     ftp_server
     ftp_client
+    websocket_server
+    websocket_client
     DESTINATION ${CMAKE_INSTALL_BINDIR}/examples
 )

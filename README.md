@@ -30,7 +30,7 @@ NetworkQuests is designed to be an educational and research-oriented project tha
 
 ## Features
 
-- 🌐 **Multi-Protocol Support**: TCP, UDP, HTTP, DNS, FTP with complete client/server implementations
+- 🌐 **Multi-Protocol Support**: TCP, UDP, HTTP, DNS, FTP, WebSocket with complete client/server implementations
 - 🔧 **Modern C++20**: Leveraging concepts, ranges, coroutines, and other modern features
 - 📚 **Educational Focus**: Detailed documentation and guides for each protocol
 - 🧪 **Comprehensive Testing**: Unit and integration tests for all components
@@ -38,6 +38,7 @@ NetworkQuests is designed to be an educational and research-oriented project tha
 - 🌍 **HTTP/1.1 Support**: Full RESTful API server with routing, middleware, and static files
 - 🔍 **DNS Resolution**: Complete RFC 1035 implementation with caching and zone management
 - 📁 **FTP File Transfer**: RFC 959 compliant FTP with active/passive modes and user management
+- 🔄 **WebSocket Protocol**: RFC 6455 real-time bidirectional communication with chat applications
 - 🔒 **Security Support**: Optional SSL/TLS support via OpenSSL integration
 - ⚡ **Asynchronous I/O**: Boost.Asio support for high-performance applications
 - 🖥️ **Cross-Platform**: Support for Linux, Windows, and macOS
@@ -53,6 +54,7 @@ NetworkQuests/
 │   ├── http.md             # HTTP protocol guide
 │   ├── dns.md              # DNS protocol guide
 │   ├── ftp.md              # FTP protocol guide
+│   ├── websocket.md        # WebSocket protocol guide
 │   └── ...                 # Other protocol guides
 ├── include/                 # Header files for shared utilities
 │   └── networkquests/      # Main library headers
@@ -75,6 +77,8 @@ NetworkQuests/
 │   ├── dns_client.cpp
 │   ├── ftp_server.cpp
 │   ├── ftp_client.cpp
+│   ├── websocket_server.cpp
+│   ├── websocket_client.cpp
 │   └── ...
 └── tests/                   # Unit tests and test utilities
 ```
@@ -166,6 +170,21 @@ dig @127.0.0.1 -p 5353 example.local
 # put localfile.txt
 ```
 
+#### WebSocket Chat Example
+```bash
+# Start WebSocket chat server in one terminal
+./examples/websocket_server
+
+# Connect with WebSocket client in another terminal
+./examples/websocket_client
+
+# In the WebSocket client, try these commands:
+# connect ws://localhost:8080/chat
+# send Hello, everyone!
+# test ws://localhost:8080/chat
+# benchmark ws://localhost:8080/chat 100
+```
+
 ## Protocol Implementations
 
 ### Currently Implemented
@@ -174,9 +193,9 @@ dig @127.0.0.1 -p 5353 example.local
 - ✅ **HTTP** - HyperText Transfer Protocol with RESTful API support and routing
 - ✅ **DNS** - Domain Name System with full RFC 1035 implementation
 - ✅ **FTP** - File Transfer Protocol with RFC 959 compliance and dual connections
+- ✅ **WebSocket** - Real-time bidirectional communication with RFC 6455 compliance
 
 ### Planned Implementations
-- 📋 **WebSocket** - Real-time bidirectional communication
 - 📋 **SMTP** - Simple Mail Transfer Protocol
 - 📋 **SSH** - Secure Shell Protocol
 - 📋 **SNMP** - Simple Network Management Protocol
