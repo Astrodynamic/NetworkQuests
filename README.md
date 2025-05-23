@@ -30,13 +30,14 @@ NetworkQuests is designed to be an educational and research-oriented project tha
 
 ## Features
 
-- 🌐 **Multi-Protocol Support**: TCP, UDP, HTTP, DNS with complete client/server implementations
+- 🌐 **Multi-Protocol Support**: TCP, UDP, HTTP, DNS, FTP with complete client/server implementations
 - 🔧 **Modern C++20**: Leveraging concepts, ranges, coroutines, and other modern features
 - 📚 **Educational Focus**: Detailed documentation and guides for each protocol
 - 🧪 **Comprehensive Testing**: Unit and integration tests for all components
 - 🏗️ **Modular Architecture**: Clean separation between protocols and shared utilities
 - 🌍 **HTTP/1.1 Support**: Full RESTful API server with routing, middleware, and static files
 - 🔍 **DNS Resolution**: Complete RFC 1035 implementation with caching and zone management
+- 📁 **FTP File Transfer**: RFC 959 compliant FTP with active/passive modes and user management
 - 🔒 **Security Support**: Optional SSL/TLS support via OpenSSL integration
 - ⚡ **Asynchronous I/O**: Boost.Asio support for high-performance applications
 - 🖥️ **Cross-Platform**: Support for Linux, Windows, and macOS
@@ -51,6 +52,7 @@ NetworkQuests/
 │   ├── udp.md              # UDP protocol guide
 │   ├── http.md             # HTTP protocol guide
 │   ├── dns.md              # DNS protocol guide
+│   ├── ftp.md              # FTP protocol guide
 │   └── ...                 # Other protocol guides
 ├── include/                 # Header files for shared utilities
 │   └── networkquests/      # Main library headers
@@ -71,6 +73,8 @@ NetworkQuests/
 │   ├── http_client.cpp
 │   ├── dns_server.cpp
 │   ├── dns_client.cpp
+│   ├── ftp_server.cpp
+│   ├── ftp_client.cpp
 │   └── ...
 └── tests/                   # Unit tests and test utilities
 ```
@@ -146,6 +150,22 @@ dig @127.0.0.1 -p 5353 example.local
 ./examples/dns_client
 ```
 
+#### FTP Server/Client Example
+```bash
+# Start FTP server in one terminal
+./examples/ftp_server
+
+# Connect with FTP client in another terminal
+./examples/ftp_client
+
+# In the FTP client, try these commands:
+# connect localhost 21
+# anonymous
+# ls
+# get README.txt
+# put localfile.txt
+```
+
 ## Protocol Implementations
 
 ### Currently Implemented
@@ -153,7 +173,7 @@ dig @127.0.0.1 -p 5353 example.local
 - ✅ **UDP** - User Datagram Protocol for connectionless communication
 - ✅ **HTTP** - HyperText Transfer Protocol with RESTful API support and routing
 - ✅ **DNS** - Domain Name System with full RFC 1035 implementation
-- 🚧 **FTP** - File Transfer Protocol (in progress)
+- ✅ **FTP** - File Transfer Protocol with RFC 959 compliance and dual connections
 
 ### Planned Implementations
 - 📋 **WebSocket** - Real-time bidirectional communication

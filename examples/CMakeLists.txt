@@ -28,6 +28,13 @@ target_link_libraries(dns_server networkquests)
 add_executable(dns_client dns_client.cpp)
 target_link_libraries(dns_client networkquests)
 
+# FTP Examples
+add_executable(ftp_server ftp_server.cpp)
+target_link_libraries(ftp_server networkquests)
+
+add_executable(ftp_client ftp_client.cpp)
+target_link_libraries(ftp_client networkquests)
+
 # Install examples
 install(TARGETS 
     tcp_echo_server 
@@ -38,5 +45,7 @@ install(TARGETS
     http_client
     dns_server
     dns_client
+    ftp_server
+    ftp_client
     DESTINATION ${CMAKE_INSTALL_BINDIR}/examples
 )

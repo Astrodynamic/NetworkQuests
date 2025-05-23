@@ -34,6 +34,7 @@ add_subdirectory(tcp)
 add_subdirectory(udp)
 add_subdirectory(http)
 add_subdirectory(dns)
+add_subdirectory(ftp)
 
 # Create main library that includes all protocols
 add_library(networkquests INTERFACE)
@@ -43,9 +44,10 @@ target_link_libraries(networkquests INTERFACE
     networkquests_udp
     networkquests_http
     networkquests_dns
+    networkquests_ftp
 )
 
 # Export library
-export(TARGETS networkquests networkquests_core networkquests_tcp networkquests_udp networkquests_http networkquests_dns
+export(TARGETS networkquests networkquests_core networkquests_tcp networkquests_udp networkquests_http networkquests_dns networkquests_ftp
     FILE "${CMAKE_BINARY_DIR}/NetworkQuestsTargets.cmake"
 )
