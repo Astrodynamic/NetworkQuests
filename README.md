@@ -30,11 +30,12 @@ NetworkQuests is designed to be an educational and research-oriented project tha
 
 ## Features
 
-- 🌐 **Multi-Protocol Support**: TCP, UDP, HTTP, DNS, FTP, WebSocket, and more
+- 🌐 **Multi-Protocol Support**: TCP, UDP, HTTP with complete client/server implementations
 - 🔧 **Modern C++20**: Leveraging concepts, ranges, coroutines, and other modern features
 - 📚 **Educational Focus**: Detailed documentation and guides for each protocol
 - 🧪 **Comprehensive Testing**: Unit and integration tests for all components
 - 🏗️ **Modular Architecture**: Clean separation between protocols and shared utilities
+- 🌍 **HTTP/1.1 Support**: Full RESTful API server with routing, middleware, and static files
 - 🔒 **Security Support**: Optional SSL/TLS support via OpenSSL integration
 - ⚡ **Asynchronous I/O**: Boost.Asio support for high-performance applications
 - 🖥️ **Cross-Platform**: Support for Linux, Windows, and macOS
@@ -63,6 +64,13 @@ NetworkQuests/
 │   ├── unit/               # Unit tests for individual components
 │   └── integration/        # Integration tests for full protocols
 ├── examples/                # Example applications for each protocol
+│   ├── tcp_echo_server.cpp # TCP echo server example
+│   ├── tcp_echo_client.cpp # TCP echo client example
+│   ├── udp_echo_server.cpp # UDP echo server example
+│   ├── udp_echo_client.cpp # UDP echo client example
+│   ├── http_server.cpp     # HTTP RESTful API server example
+│   ├── http_client.cpp     # HTTP interactive client example
+│   └── ...                 # Other protocol examples
 └── README.md               # This file
 ```
 
@@ -105,6 +113,7 @@ ctest
 
 ### 3. Run Your First Example
 
+#### TCP Echo Example
 ```bash
 # Start TCP server in one terminal
 ./examples/tcp_server
@@ -113,12 +122,25 @@ ctest
 ./examples/tcp_client
 ```
 
+#### HTTP Server Example
+```bash
+# Start HTTP server in one terminal
+./examples/http_server
+
+# Test with curl or visit http://localhost:8080 in your browser
+curl -X GET http://localhost:8080/
+curl -X POST http://localhost:8080/api/users -H "Content-Type: application/json" -d '{"name":"John","email":"john@example.com"}'
+
+# Or use the interactive HTTP client
+./examples/http_client
+```
+
 ## Protocol Implementations
 
 ### Currently Implemented
 - ✅ **TCP** - Transmission Control Protocol with connection management
 - ✅ **UDP** - User Datagram Protocol for connectionless communication
-- 🚧 **HTTP** - HyperText Transfer Protocol (in progress)
+- ✅ **HTTP** - HyperText Transfer Protocol with RESTful API support and routing
 - 🚧 **DNS** - Domain Name System resolver (in progress)
 
 ### Planned Implementations
